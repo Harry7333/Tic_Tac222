@@ -6,6 +6,7 @@
     <title>Multiplayer Tic-Tac</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
     <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="https://tic-tac-e453e.cloudfunctions.net/app/socket.io/socket.io.js"></script>
 
 </head>
@@ -13,7 +14,7 @@
     <script>
         var game = new Phaser.Game(300, 350, Phaser.AUTO, "", { preload: preload, create: create });
 
-        var socket = io("http://tictac222-production.up.railway.app");
+        var socket = io("https://tic-tac222.onrender.com", { secure: true });
         var playerType = null;
         var board = Array(9).fill(null);
         var buttons = [];

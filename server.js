@@ -2,15 +2,29 @@ const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
 const path = require("path");
+const cors = require("cors");
+
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+
+
+
+// Enable CORS for your Firebase frontend
+app.use(cors({ origin: "https://tic-tac-e453e.web.app" }));
+
+
+// const io = socketIO(server);
+
+const io = socketIo(server, {
+    cors: {
+        origin: "https://tic-tac-e453e.web.app",
+        methods: ["GET", "POST"],
+    },
 });
+
+
 // server.listen(3000, () => console.log("Server running on http://localhost:3000"));
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -110,3 +124,7 @@ io.on("connection", (socket) => {
 });
 
 
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
