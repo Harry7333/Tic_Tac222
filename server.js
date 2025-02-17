@@ -17,7 +17,7 @@ app.use(cors({ origin: "https://tic-tac-e453e.web.app" }));
 
 // const io = socketIO(server);
 
-const io = socketIo(server, {
+const io = socketIO(server, {
     cors: {
         origin: "https://tic-tac-e453e.web.app",
         methods: ["GET", "POST"],
