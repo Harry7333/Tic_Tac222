@@ -15,14 +15,16 @@ const server = http.createServer(app);
 app.use(cors({ origin: "https://tic-tac-e453e.web.app" }));
 
 
-// const io = socketIO(server);
+const io = socketIO(server); // use this for local hosting
 
+/*
+use below when want to use server hosting on render
 const io = socketIO(server, {
     cors: {
         origin: "https://tic-tac-e453e.web.app",
         methods: ["GET", "POST"],
     },
-});
+});*/
 
 
 // server.listen(3000, () => console.log("Server running on http://localhost:3000"));
