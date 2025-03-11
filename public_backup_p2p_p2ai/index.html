@@ -1,0 +1,112 @@
+﻿<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Tic</title>
+
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/phaser.min.js"></script>
+        
+        <script src="js/Assets.js"></script>
+        <!-- <script src="js/ai.js"></script> -->
+        
+        
+  
+    </head>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Phaser App">
+    <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui"/>
+    <body>
+
+    	<div id = "turn"></div>
+	    <div id = "loader"></div>
+
+        <!-- <div id="controls">
+            <label>Rows: <input type="number" id="rows" min="3" max="10" value="3"></label><br>
+            <label>Columns: <input type="number" id="cols" min="3" max="10" value="3"></label><br>
+            <label>Winning Sequence: <input type="number" id="winSeq" min="3" max="10" value="3"></label><br><br>
+            <button onclick="startGame()">Start Game</button><br>
+        </div> -->
+
+
+        <div id="game-container">
+            
+
+        </div>
+
+
+        <div id="main">
+            <section id="startBox" class="sidebar1">
+                <div class="input-group">
+                    <label for="player1_name">Player 1:</label>
+                    <input type="text" id="player1_name" maxlength="20" placeholder="Player 'X'"/>
+                </div>
+                <div class="input-group">
+                    <label for="player2_name">Player 2:</label>
+                    <input type="text" id="player2_name" maxlength="20" placeholder="Player 'O'"/>
+                </div>
+                <div class="input-group">    
+                    <label for="columns">Columns:</label>
+                    <input type="number" id="columns" min="3" max="20" placeholder="3"/>
+                </div>    
+                <div class="input-group">
+                    <label for="rows">Rows:</label>
+                    <input type="number" id="rows" min="3" max="20" placeholder="3"/>
+                </div>    
+                <div class="input-group">
+                    <label for="steps">Win length: </label>
+                    <input type="number" id="steps" min="3" max="20" placeholder="3"/>
+                </div>
+                <button id="start" class="button_box" >START</button>
+                <button id="back" class="button_box" >BACK</button>
+            </section>
+            <section id="field">
+            </section>
+            <section id="game-play-bottom">
+              <div class="player-section">  
+                <p id="player1" class="button_box">-</p>
+                <p id="player2" class="button_box">-</p>
+              </div>  
+              <div id="turns">
+                <p id="titleTurns">Number of turns</p>
+                <p id="numberTurns">0</p>
+              </div>
+              <h2 id="status"></h2>
+              <button id="playAgain" class="button_box">PLAY AGAIN</button>
+              <button id="restart" class="button_box">BACK</button>
+              <button id="home" class="button_box">HOME</button>
+            </section>
+        </div>
+
+         <script src="js/newAI.js"></script>
+        <!-- <script src="js/playerVsPlayer.js"></script>
+        <script src="js/playerVsAI.js"></script> -->
+
+        <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+          import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+
+          // Your web app's Firebase configuration
+          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+          const firebaseConfig = {
+            apiKey: "AIzaSyDYxEJWZIP-0TBYtCURoyJbErV7czeeCUk",
+            authDomain: "tic-tac-e453e.firebaseapp.com",
+            projectId: "tic-tac-e453e",
+            storageBucket: "tic-tac-e453e.firebasestorage.app",
+            messagingSenderId: "1088796588493",
+            appId: "1:1088796588493:web:6e6b0111d5d1e199c7ec84",
+            measurementId: "G-PPLFB6L4ZT"
+          };
+
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const analytics = getAnalytics(app);
+        </script>
+    </body>
+</html>
+
