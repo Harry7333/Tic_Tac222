@@ -293,7 +293,8 @@ section {
 #countdown{
     position: fixed;
     top: 140px;
-    left: 165px;
+    left: 50%;   /* Move to center */
+    transform: translateX(-50%); /* Adjust to center */
     font-size: 5em;
     font-weight: bold;
     color: #232d55;

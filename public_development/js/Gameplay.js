@@ -10,15 +10,18 @@ const countdownPElement = document.getElementById('countdown');
 const player1Timer = document.getElementById('player1Timer');
 const player2Timer = document.getElementById('player2Timer');
 
-
+var socket;// = io(); 
 
 let gameActive = true;
 let currentPlayer = 'X';
 let gameState = [];
 let cols, rows, steps, counter = 0;
+let socketIdOfX = '';
 
-
+const winnMessageMulti = () => `You Won!`;
 const winnMessage = () => `${currentPlayer} Wins!`;
+const loseMessage = () => `You Lost!`;
+
 const nobodyWinsMessage = () => `!!Draw!!`;
 
 let blinkInterval;
@@ -73,18 +76,26 @@ let drawField = () => {
 };
 
 let handleStart = () => {
+
+    console.log(`countDown = ${countDown}`);
     
     if(!isStepValueValid || !isColValueValid || !isRowValueValid)
         return;
-    // console.log(`countDown = ${countDown}`);
     if(countDown == 3)
     {
-        show321();
-
         cols = checkInput(document.getElementById('columns').value);
         rows = checkInput(document.getElementById('rows').value);
         steps = checkInput(document.getElementById('steps').value);
 
+        if(gameMode === 'multiplayer')
+        {
+            cols = 4;
+            rows = 4;
+            steps = 4;
+        }
+        else
+            show321();    
+        
         id=RandomInt(0, 2);//(min, max)
         bgPath = `./assets/bg${id}.png`;
         document.getElementById("main").style.backgroundImage = `url(${bgPath})`;
@@ -136,7 +147,9 @@ let handlePlayerSwitch = () => {
             blinkPlayer(player2);
             startTimer(player2Timer,2);
         }
-    }    
+    }  
+
+
 };
 
 let timerInterval;
@@ -165,20 +178,28 @@ function startTimer(timerElement,player)
             else
                 player2Life--;
 
+            if(gameMode === 'multiplayer')
+            {
+                //gameRoom = data.room;gameRoom.players.X === socket.id ? "X" : "O";
+                if(socketIdOfX === socket.id)
+                {
+                    console.log(`emmiting switchPlayer`);
+                    socket.emit("switchPlayer", { room: gameRoom });  
+                }    
+            } 
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+
+            
+            console.log(`player1Life = ${player1Life}, player2Life = ${player2Life}`);
 
             if(player1Life < 1 || player2Life < 1)
             {
-                gameActive = false;
-                clearInterval(blinkInterval);
-                player1Timer.innerHTML = '-';
-                player2Timer.innerHTML = '-';
-                blinkStatus(statusDisplay);
-                statusDisplay.style.display = "flex";
-                statusDisplay.innerHTML = winnMessage();
+                declareWinner('win'); // time up                 
             }    
             else
                 handlePlayerSwitch();
+
+
         } 
     }, 1000); // Change color every 500ms
 };
@@ -211,13 +232,16 @@ function blinkStatus(blinkElement) {
             isHighlighted = !isHighlighted;
             if(n < 15) n++;
             else n = 0;    
-    }, 50); // Change color every 500ms
+    }, 50); 
 };
 
 let interval321;
 let countDown = 3;
 function show321() {
 
+    countdownPElement.style.top = '140px';
+    countdownPElement.style.fontSize = "5em";
+      
     countdownPElement.style.display = "block";
     countdownPElement.innerHTML = countDown;
     // console.log(`countDown = ${countDown}`);
@@ -241,48 +265,11 @@ function show321() {
 
 let isMovesLeft = () => {
     if (counter === cols * rows) {
-        // blinkStatus(statusDisplay);
-        clearInterval(blinkInterval);
-        clearInterval(timerInterval);
-        player1Timer.innerHTML = '-';
-        player2Timer.innerHTML = '-';
-        statusDisplay.style.display = "flex";
-        statusDisplay.innerHTML = nobodyWinsMessage();
-        gameActive = false;
+        declareWinner('draw');
         //if(isSound) sndDraw.play();
     }
 };
 
-/*
-let handleClick = (event) => {
-    if (!gameActive || (isAI && currentPlayer === 'O')) return;
-    let [i, j] = event.target.getAttribute('id').split('_').map(Number);
-    if (gameState[i][j] !== 0) return;
-
-    makeMove(i, j);
-    handlePlayerSwitch();
-};
-
-let makeMove = (i, j) => {
-    gameState[i][j] = currentPlayer === 'X' ? 1 : 2;
-    document.getElementById(`${i}_${j}`).innerHTML = currentPlayer;
-    counter++;
-    isWinning(i, j);
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-};
-
-let aiMove = () => {
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if (gameState[i][j] === 0) {
-                makeMove(i, j);
-                handlePlayerSwitch();
-                return;
-            }
-        }
-    }
-};
-*/
 let isWinning = (y, x) => {
     let player = currentPlayer === 'X' ? 1 : 2;
     let directions = [[0,1], [1,0], [1,1], [1,-1]];
@@ -302,15 +289,7 @@ let isWinning = (y, x) => {
             } else break;
         }
         if (count >= steps) {
-            gameActive = false;
-            clearInterval(timerInterval);    
-            clearInterval(blinkInterval);
-            player1Timer.innerHTML = '-';
-            player2Timer.innerHTML = '-';
-            
-            blinkStatus(statusDisplay);
-            statusDisplay.style.display = "flex";
-            statusDisplay.innerHTML = winnMessage();
+            declareWinner('win');
             /*if(isSound)
             {    
                 if(currentPlayer === 'X')
@@ -326,60 +305,34 @@ let isWinning = (y, x) => {
 
 let handlePlayAgain = () => {
 
-    
-    console.log(`countDown = ${countDown}`);
-    
-    if(countDown>0)
-        return;
-
-    clearInterval(timerInterval);
-    clearInterval(blinkInterval);
-
-    timeCounter = 0;
-    player1Life = 2;
-    player2Life = 2;
-    player1Timer.innerHTML = '-';
-    player2Timer.innerHTML = '-';
-
-    gameActive = true;
-    countDown = 3;
-    currentPlayer = 'X';
-    counter = 0;
+    resetValues();
     setSoundIcon();
     soundonoff.style.display = "block";
     countField.style.display = "block";
     countField.innerHTML = 'Number of turns: 0';
-    statusDisplay.style.display = "none";
-    statusDisplay.innerHTML = '';
-    player1.style.background = player2.style.background = '#8f8f8f';
-    playField.removeChild(document.getElementById('container'));
     handleStart();
     
-
-    /*
-gameActive = true;
-    currentPlayer = 'X';
-    counter = 0;
-    countField.innerHTML = '0';
-    statusDisplay.innerHTML = '';
-    statusDisplay.style.color = 'black';
-    player1.style.background = player2.style.background = '#8f8f8f';
-    playField.removeChild(document.getElementById('container'));
-    handleStart();
-    */
 };
-
 
 let handleRestart = () => {
 
+    resetValues();
+    document.getElementById("main").style.backgroundImage = "url('./assets/commonbg.png')";
+    document.getElementById('game-play-bottom').style.display = "none";
+    soundonoff.style.display = "none";
+    countField.style.display = "none";
+    statusDisplay.style.color = '#232d55';
+    player1_name.value = userName;
+    player2_name.value = '';
+    player1.innerHTML = player2.innerHTML = '-';
+    startBox.className = 'sidebar1';
+}
+
+function resetValues()
+{
     console.log(`countDown = ${countDown}`);
     if(countDown>0)
         return;
-    document.getElementById("main").style.backgroundImage = "url('./assets/commonbg.png')";
-    document.getElementById('game-play-bottom').style.display = "none";
-    gameActive = true;
-    currentPlayer = 'X';
-    counter = 0;
     clearInterval(timerInterval);
     clearInterval(blinkInterval);
     timeCounter = 0;
@@ -387,22 +340,15 @@ let handleRestart = () => {
     player2Life = 2;
     player1Timer.innerHTML = '-';
     player2Timer.innerHTML = '-';
+    gameActive = true;
     countDown = 3;
-    // setSoundIcon();
-    soundonoff.style.display = "none";//"block";
-    countField.style.display = "none";//"block";
-    // countField.innerHTML = `Number of turns: 0`;
+    currentPlayer = 'X';
+    counter = 0;
     statusDisplay.style.display = "none";
     statusDisplay.innerHTML = '';
-    statusDisplay.style.color = '#232d55';
     player1.style.background = player2.style.background = '#8f8f8f';
-    player1_name.value = userName;
-    player2_name.value = '';
-    player1.innerHTML = player2.innerHTML = '-';
-    startBox.className = 'sidebar1';
     playField.removeChild(document.getElementById('container'));
 }
-
 
 let handleBack = () => {
     document.getElementById('main').style.display = "none";
@@ -412,12 +358,15 @@ let handleHome = () => {
 
     console.log(`countDown = ${countDown}`);
     
-    if(countDown>0)
-        return;
+    // if(countDown>0)
+    //     return;
 
+    
     handleRestart();
     handleBack();
     showMenu();
+    if(gameMode === 'multiplayer')
+        disConnectMe();
 }
 let handleSound = () => {
     isSound = !isSound;
@@ -691,12 +640,189 @@ const makeMove = (i, j) => {
 
 // Modify handleClick to trigger AI move after player's turn
 let handleClick = (event) => {
+
     let clickedIndex = event.target.getAttribute('id').split('_');
     let i = +clickedIndex[0];
     let j = +clickedIndex[1];
 
     if (gameState[i][j] !== 0 || !gameActive) return;
-
-
-    makeMove(i, j);
+    
+    if(gameMode === 'multiplayer')
+    {
+        index = getIndex(i,j);
+        console.log(`in handleClick`);
+        makeMoveMulti(index);
+    }
+    else
+        makeMove(i, j);
 };
+
+function getIndex(i,j){
+    return ((4*i)+j);
+}
+function getI(num) {
+    return Math.floor(num/4);
+}
+function getJ(num) {
+    return Math.floor(num%4);
+}
+function multiplayer()
+{
+    socket.on("playerType", (data) => {
+        console.log(`in client playerType : `,data);
+        playerType = data.type;
+        if(playerType === 'X')
+        {
+            socketIdOfX = socket.id;
+            player1.innerHTML = 'You Player X';
+            player2.innerHTML = 'Oppo Player O';
+        }    
+        else
+        {
+            player1.innerHTML = 'Oppo Player X';
+            player2.innerHTML = 'You Player O';
+        }    
+
+        console.log(`socketIdOfX = ${socketIdOfX}`);
+        gameRoom = data.room;
+        //alert("You are player: " + data.type);
+        countdownPElement.style.display = "block";
+        countdownPElement.style.top = '180px';
+        countdownPElement.style.fontSize = "2em";
+        countdownPElement.innerHTML = "You are player: " + data.type;
+        // winnerText.text = "You are player: " + data.type;
+    });
+
+    socket.on("waitingForPlayer", () => {
+        // alert("Waiting for an opponent...");
+        //winnerText.text = "Waiting for an opponent";
+
+        countdownPElement.style.display = "block";
+        countdownPElement.style.top = '180px';
+        countdownPElement.style.fontSize = "2em";
+        countdownPElement.innerHTML = "Waiting for an opponent";
+        if(isDesktop)
+        {
+            countdownPElement.style.fontSize = "2.5em";
+        }    
+
+    });
+
+    socket.on("startGame", () => {
+        // alert("Game started!");
+        // winnerText.text = "Game started";
+        setTimeout( ()=> {
+            countdownPElement.innerHTML = "Game started";
+        },1000);
+        setTimeout( ()=> {
+            show321();   
+        },2000);
+        
+    });
+
+    socket.on("updateBoard", (data) => {
+        // if(data.player === 'X')
+        //     buttons[data.index].text.fill = "#22ff66";
+        // else
+        //     buttons[data.index].text.fill = "#eeaa11";
+        // buttons[data.index].text.text = data.player;
+        // board[data.index] = data.player;
+        i = getI(data.index);
+        j = getJ(data.index);
+        makeMove(i, j);
+    });
+
+    socket.on("turn", (turn) => {
+        console.log("Turn:", turn);
+    });
+
+    socket.on("gameOver", (winner) => {
+        // winnerText.text = winner === "draw" ? "Game Draw!" : "Player " + winner + " Wins!";
+        // game.time.events.add(Phaser.Timer.SECOND * 2, resetBoard, this);
+        console.log(`SERVER winner is ${winner}`);
+        let result = 'draw';
+        if(winner === "X" || winner === "O")
+        {
+            currentPlayer = winner;
+            result = 'win';
+        }
+        declareWinner(result);        
+
+    });
+
+    socket.on("playerLeft", (playerWhoHasLeft) => {
+        // alert("Your opponent left. The game is over.");
+        // winnerText.text = ("Game Over! player left");
+        countdownPElement.style.display = "block";
+        countdownPElement.style.fontSize = "2em";
+        countdownPElement.innerHTML = "Game Over! player left";
+        console.log(`playerWhoHasLeft = ${playerWhoHasLeft}`,playerWhoHasLeft);
+        currentPlayer = playerWhoHasLeft === 'X' ? 'O' : 'X'; // here current player means winner
+        setTimeout( ()=> {
+            countdownPElement.innerHTML = " ";
+            resetBoard();
+            declareWinner('win');
+        },3000);
+        
+    });
+}
+
+function disConnectMe()
+{
+    console.log(`in disConnectMe = `,socket.id);
+    socket.disconnect();
+}
+function makeMoveMulti(index) {
+    console.log(`in make move client index = ${index}`);
+    // if (board[index] === null && gameRoom) 
+    {
+        socket.emit("makeMove", { index, room: gameRoom });
+    }
+}
+
+function resetBoard() {
+    //board.fill(null);
+    //buttons.forEach((b) => (b.text.text = ""));
+    // winnerText.text = "";
+    // location.reload();
+}
+
+function declareWinner(result)
+{
+    gameActive = false;
+    clearInterval(blinkInterval);
+    clearInterval(timerInterval);
+    player1Timer.innerHTML = '-';
+    player2Timer.innerHTML = '-';
+    statusDisplay.style.display = "flex";
+
+    if(result === 'win')
+    {
+        blinkStatus(statusDisplay);
+        if(gameMode === 'multiplayer')
+        {
+            if(currentPlayer === 'X') // if winner is X
+            {
+                if(socketIdOfX === socket.id) // this system is of X
+                    statusDisplay.innerHTML = winnMessageMulti();
+                else
+                    statusDisplay.innerHTML = loseMessage();    
+            }    
+            else if(currentPlayer === 'O')
+            {
+                if(socketIdOfX === socket.id)
+                    statusDisplay.innerHTML = loseMessage();
+                else
+                    statusDisplay.innerHTML = winnMessageMulti();    
+            }
+        }    
+        else
+            statusDisplay.innerHTML = winnMessage(); // for p2p and p2ai
+        
+    }
+    else  // draw
+    {
+        statusDisplay.innerHTML = nobodyWinsMessage();
+    }    
+
+}

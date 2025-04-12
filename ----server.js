@@ -12,21 +12,21 @@ const server = http.createServer(app);
 
 
 // Enable CORS for your Firebase frontend
-// app.use(cors({ origin: "https://tic-tac-e453e.web.app" })); // use for server hosting on render
+app.use(cors({ origin: "https://tic-tac-e453e.web.app" }));
 
 
 const io = socketIO(server); // use this for local hosting
 
-
-// use below when want to use server hosting on render
-/*const io = socketIO(server, {
+/*
+use below when want to use server hosting on render
+const io = socketIO(server, {
     cors: {
         origin: "https://tic-tac-e453e.web.app",
         methods: ["GET", "POST"],
     },
 });*/
 
-console.log(`gththt`);
+
 // server.listen(3000, () => console.log("Server running on http://localhost:3000"));
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -41,21 +41,15 @@ let waitingPlayer = null;
 
 // **Check if a player has won**
 function checkWinner(board) {
-    // console.log("in checkWinner", socket.id);
     const winPatterns = [
-        [0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15],// Rows
-        [0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15],// Columns
-        [0, 5, 10, 15], [3, 6, 9, 12]// Diagonals
-    ];
-/*
-3x3
-[0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
         [0, 4, 8], [2, 4, 6]             // Diagonals
-*/
+    ];
+
     for (let pattern of winPatterns) {
-        const [a, b, c, d] = pattern;
-        if (board[a] && board[a] === board[b] && board[a] === board[c] && board[a] === board[d]) {
+        const [a, b, c] = pattern;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
             return board[a]; // Returns "X" or "O"
         }
     }
@@ -68,47 +62,32 @@ io.on("connection", (socket) => {
 
     if (waitingPlayer === null) {
         // No waiting player, store this player for next match
-        console.log("in waitingPlayer ----------------------------null", socket.id);
         waitingPlayer = socket.id;
         socket.emit("waitingForPlayer");
     } else {
         // Create a new game room for this pair
-        console.log("in waitingPlayer else", socket.id);
         let room = `game-${waitingPlayer}-${socket.id}`;
         games[room] = {
-            board: Array(16).fill(null),
+            board: Array(9).fill(null),
             players: { X: waitingPlayer, O: socket.id },
             turn: "X"
         };
 
         // Join both players to the game room
         io.to(waitingPlayer).emit("playerType", { type: "X", room });
+        io.to(socket.id).emit("playerType", { type: "O", room });
 
-        console.log(`emmting playerType for ${socket.id}`);    
-        //io.to(socket.id).emit("playerType", { type: "O", room });
-        
         socket.join(room);
-        console.log(`${socket.id} joined ${room}`);
         io.sockets.sockets.get(waitingPlayer).join(room);
-        
+        io.to(room).emit("startGame");
 
         console.log(`Game started in room: ${room}`);
 
-        setTimeout(() => {
-            io.to(socket.id).emit("playerType", { type: "O", room });
-            console.log(`Sent playerType to ${socket.id}, Room: ${room}`);
-        }, 500);
-        setTimeout(() => {
-            io.to(room).emit("startGame");
-        }, 1000);
-
         // Reset waiting player
-        waitingPlayer = null;   
-        
+        waitingPlayer = null;
     }
 
     socket.on("makeMove", ({ index, room }) => {
-         console.log("in makeMove", socket.id);
         let game = games[room];
         if (!game || game.board[index] !== null) return;
 
@@ -129,24 +108,13 @@ io.on("connection", (socket) => {
         io.to(room).emit("turn", game.turn);
     });
 
-    socket.on("switchPlayer", ({ room }) => 
-    {
-        let game = games[room];
-        game.turn = game.turn === "X" ? "O" : "X";
-        io.to(room).emit("turn", game.turn);
-    });
     socket.on("disconnect", () => {
         console.log("User disconnected:", socket.id);
 
         let roomToDelete = null;
         for (let room in games) {
-            if (games[room].players.X === socket.id || games[room].players.O === socket.id) 
-            {
-                if(games[room].players.X === socket.id)
-                    playerWhoHasLeft = 'X';
-                else
-                    playerWhoHasLeft = 'O';
-                io.to(room).emit("playerLeft",playerWhoHasLeft);
+            if (games[room].players.X === socket.id || games[room].players.O === socket.id) {
+                io.to(room).emit("playerLeft");
                 roomToDelete = room;
                 break;
             }

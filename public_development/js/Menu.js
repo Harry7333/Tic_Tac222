@@ -23,6 +23,8 @@ let userAvatarImgUrl = tempUserAvatarImgUrl;
 let oppoAvatarImgUrl = `url('./assets/avatar/avatar_none.png')`;
 
 let isAI = false; 
+
+let gameMode = 'playerVsAI';//'playerVsPlayer';//'multiplayer';
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -40,7 +42,7 @@ window.onload = function()
 
     var paramValue = url.searchParams.get("jfTds4sls");
 
-    if(paramValue == "julGtFrDS")
+    // if(paramValue == "julGtFrDS")
     {
         document.getElementById("loader").style.display = "none";  
         setTimeout(()=>{
@@ -105,6 +107,9 @@ function showMenu()
 {
     document.getElementById('menu-point').innerHTML = "Available points: "+userPoints;
     document.getElementById("main-menu").style.display = "flex";  
+    document.getElementById("restart").style.display = "block"; 
+    document.getElementById("playAgain").style.display = "block"; 
+    
 }
 function hideMenu()
 {
@@ -164,12 +169,12 @@ function saveSetting()
 function handleEvents()
 {
 	document.querySelector('#btn-player-vs-player').addEventListener('click', handlePvsP);
-	/*document.querySelector('#btn-player-vs-ai').addEventListener('click', handlePvsAi); */
+	// document.querySelector('#btn-player-vs-ai').addEventListener('click', handlePvsAi); 
+    // document.querySelector('#btn-multiplyer').addEventListener('click', handleMultiplayer);
+
 	document.querySelector('#btn-sound').addEventListener('click', handleSound);
-	document.querySelector('#btn-profile').addEventListener('click', handleProfile);
+	// document.querySelector('#btn-profile').addEventListener('click', handleProfile);
 	
-
-
 	document.querySelector('#btn-info-continue').addEventListener('click', handleInfoContinue); 
 	document.querySelector('#btn-back').addEventListener('click', handleInfoBack); 
 
@@ -194,20 +199,45 @@ function handleEvents()
     });
 }
 function handlePvsAi() {
+    gameMode = 'playerVsAI';
 	isAI = true;
 	hideMenu();
     showInfo();
 }
 function handlePvsP()
 {
+    gameMode = 'playerVsPlayer';
 	isAI = false;
     hideMenu();
     showInfo();
 }
+function handleMultiplayer()
+{
+    document.getElementById("restart").style.display = "none"; // hide back button on gameplay screen
+    document.getElementById("playAgain").style.display = "none"; // hide playAgain button on gameplay screen
+    gameMode = 'multiplayer';
+    isAI = false;
+    hideMenu();
+    showInfo();
+
+}
+
 function handleInfoContinue()
 {
-    hideInfo();
-    showConfig();
+    if(gameMode === 'multiplayer')
+    {
+        hideInfo();
+        showConfig();
+        isStepValueValid = isColValueValid = isRowValueValid = true;
+        handleStart();
+        socket = io();
+        multiplayer();
+    }    
+    else
+    {
+        hideInfo();
+        showConfig();
+    }    
 }
 function handleInfoBack() {
     hideInfo();
