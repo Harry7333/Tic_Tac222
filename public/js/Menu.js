@@ -1,4 +1,285 @@
-/***************************************************************************/
-/*      1.0     */
-/***************************************************************************/
-var _$_88f7=["\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68","\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74","\x50\x6C\x61\x79\x65\x72\x20\x58","\x70\x6C\x61\x79\x65\x72\x56\x73\x41\x49","\x6F\x6E\x6C\x6F\x61\x64","\x6C\x6F\x63\x61\x74\x69\x6F\x6E","\x6A\x66\x54\x64\x73\x34\x73\x6C\x73","\x67\x65\x74","\x73\x65\x61\x72\x63\x68\x50\x61\x72\x61\x6D\x73","\x64\x69\x73\x70\x6C\x61\x79","\x73\x74\x79\x6C\x65","\x6C\x6F\x61\x64\x65\x72","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x6E\x6F\x6E\x65","\x76\x69\x73\x69\x62\x69\x6C\x69\x74\x79\x63\x68\x61\x6E\x67\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x68\x69\x64\x64\x65\x6E","\x55\x73\x65\x72\x20\x69\x73\x20\x6F\x6E\x3A","\x6C\x6F\x67","\x61\x73\x73\x65\x74\x73\x2F\x6D\x65\x64\x69\x61\x2F\x77\x69\x6E\x2E\x6D\x70\x33","\x61\x73\x73\x65\x74\x73\x2F\x6D\x65\x64\x69\x61\x2F\x6C\x6F\x73\x65\x2E\x6D\x70\x33","\x61\x73\x73\x65\x74\x73\x2F\x6D\x65\x64\x69\x61\x2F\x64\x72\x61\x77\x2E\x6D\x70\x33","\x61\x73\x73\x65\x74\x73\x2F\x6D\x65\x64\x69\x61\x2F\x70\x31\x6D\x6F\x76\x65\x2E\x6D\x70\x33","\x61\x73\x73\x65\x74\x73\x2F\x6D\x65\x64\x69\x61\x2F\x70\x32\x6D\x6F\x76\x65\x2E\x6D\x70\x33","\x6C\x6F\x67\x6F","\x73\x70\x6C\x61\x73\x68","\x62\x6C\x6F\x63\x6B","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x6D\x65\x6E\x75\x2D\x70\x6F\x69\x6E\x74","\x41\x76\x61\x69\x6C\x61\x62\x6C\x65\x20\x70\x6F\x69\x6E\x74\x73\x3A\x20","\x6D\x61\x69\x6E\x2D\x6D\x65\x6E\x75","\x66\x6C\x65\x78","\x72\x65\x73\x74\x61\x72\x74","\x70\x6C\x61\x79\x41\x67\x61\x69\x6E","\x70\x72\x6F\x66\x69\x6C\x65\x2D\x63\x6F\x6E\x74\x61\x69\x6E\x65\x72","\x20\x70\x6F\x69\x6E\x74\x73","\x73\x75\x62\x2D\x74\x69\x74\x6C\x65","\x20\x70\x6F\x69\x6E\x74\x73\x20\x77\x69\x6C\x6C\x20\x62\x65\x20\x64\x65\x64\x75\x63\x74\x65\x64\x2E","\x74\x65\x78\x74\x2D\x63\x6F\x6E\x74\x65\x6E\x74","\x69\x6E\x66\x6F","","\x63\x6F\x6E\x66\x69\x67\x2D\x70\x6F\x69\x6E\x74","\x6D\x61\x69\x6E","\x62\x61\x63\x6B\x67\x72\x6F\x75\x6E\x64\x49\x6D\x61\x67\x65","\x73\x65\x6C\x65\x63\x74\x65\x64\x2D\x61\x76\x61\x74\x61\x72","\x76\x61\x6C\x75\x65","\x70\x6C\x61\x79\x65\x72\x31\x5F\x6E\x61\x6D\x65","\x75\x73\x65\x72\x2D\x6E\x61\x6D\x65","\x70\x6C\x61\x79\x65\x72\x31\x41\x76\x61\x74\x61\x72","\x70\x6C\x61\x79\x65\x72\x32\x41\x76\x61\x74\x61\x72","\x63\x6C\x69\x63\x6B","\x23\x62\x74\x6E\x2D\x70\x6C\x61\x79\x65\x72\x2D\x76\x73\x2D\x70\x6C\x61\x79\x65\x72","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x23\x62\x74\x6E\x2D\x73\x6F\x75\x6E\x64","\x23\x62\x74\x6E\x2D\x69\x6E\x66\x6F\x2D\x63\x6F\x6E\x74\x69\x6E\x75\x65","\x23\x62\x74\x6E\x2D\x62\x61\x63\x6B","\x23\x62\x74\x6E\x2D\x73\x61\x76\x65","\x23\x62\x74\x6E\x2D\x70\x72\x6F\x66\x69\x6C\x65\x2D\x63\x6F\x6E\x74\x69\x6E\x75\x65","\x23\x62\x74\x6E\x2D\x70\x72\x6F\x66\x69\x6C\x65\x2D\x62\x61\x63\x6B","\x23\x61\x76\x61\x74\x61\x72\x5F\x30","\x23\x61\x76\x61\x74\x61\x72\x5F\x31","\x23\x61\x76\x61\x74\x61\x72\x5F\x32","\x23\x61\x76\x61\x74\x61\x72\x5F\x33","\x23\x61\x76\x61\x74\x61\x72\x5F\x34","\x23\x61\x76\x61\x74\x61\x72\x5F\x35","\x66\x6F\x63\x75\x73","\x62\x6C\x75\x72","\x74\x72\x69\x6D","\x70\x6C\x61\x79\x65\x72\x56\x73\x50\x6C\x61\x79\x65\x72","\x6D\x75\x6C\x74\x69\x70\x6C\x61\x79\x65\x72","\x69\x64","\x73\x72\x63\x45\x6C\x65\x6D\x65\x6E\x74","\x2E\x70\x6E\x67\x27\x29","\x72\x61\x6E\x64\x6F\x6D","\x66\x6C\x6F\x6F\x72","\x75\x73\x65\x72\x41\x67\x65\x6E\x74","\x74\x65\x73\x74","\x4D\x6F\x62\x69\x6C\x65","\x44\x65\x73\x6B\x74\x6F\x70"];var isSound=true;var isToggleSound=true;var gameRatio=window[_$_88f7[0]]/ window[_$_88f7[1]];var maxX=720;var maxY=1280;let sndWin,sndLose,sndDraw,sndP1Move,sndP2Move;let userPoints=1000,p2pPoints=50;let isDesktop=false;let tempUserName=_$_88f7[2];let userName=tempUserName;let tempUserAvatarImgUrl="\x75\x72\x6C\x28\x27\x2E\x2F\x61\x73\x73\x65\x74\x73\x2F\x61\x76\x61\x74\x61\x72\x2F\x61\x76\x61\x74\x61\x72\x5F\x6E\x6F\x6E\x65\x2E\x70\x6E\x67\x27\x29";let userAvatarImgUrl=tempUserAvatarImgUrl;let oppoAvatarImgUrl="\x75\x72\x6C\x28\x27\x2E\x2F\x61\x73\x73\x65\x74\x73\x2F\x61\x76\x61\x74\x61\x72\x2F\x61\x76\x61\x74\x61\x72\x5F\x6E\x6F\x6E\x65\x2E\x70\x6E\x67\x27\x29";let isAI=false;let gameMode=_$_88f7[3];window[_$_88f7[4]]= function(){if(detectDevice()){isDesktop= true}else {isDesktop= false};var _0x20795=window[_$_88f7[5]];url_string= decodeURIComponent(_0x20795);var _0x20858= new URL(url_string);var _0x20817=_0x20858[_$_88f7[8]][_$_88f7[7]](_$_88f7[6]);{document[_$_88f7[12]](_$_88f7[11])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13];setTimeout(()=>{hideLogo();showSplash()},2000);setTimeout(()=>{hideSplash();showMenu()},4000);handleEvents();loadSounds()}document[_$_88f7[15]](_$_88f7[14],_0x207D6,false);function _0x207D6(){if(document[_$_88f7[16]]){}else {};if(detectDevice()){isDesktop= true}else {isDesktop= false};console[_$_88f7[18]](_$_88f7[17],detectDevice())}};function loadSounds(){sndWin=  new Audio(_$_88f7[19]);sndLose=  new Audio(_$_88f7[20]);sndDraw=  new Audio(_$_88f7[21]);sndP1Move=  new Audio(_$_88f7[22]);sndP2Move=  new Audio(_$_88f7[23])}function hideLogo(){document[_$_88f7[12]](_$_88f7[24])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13]}function showSplash(){document[_$_88f7[12]](_$_88f7[25])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[26]}function hideSplash(){document[_$_88f7[12]](_$_88f7[25])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13]}function showMenu(){document[_$_88f7[12]](_$_88f7[28])[_$_88f7[27]]= _$_88f7[29]+ userPoints;document[_$_88f7[12]](_$_88f7[30])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[31];document[_$_88f7[12]](_$_88f7[32])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[26];document[_$_88f7[12]](_$_88f7[33])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[26]}function hideMenu(){document[_$_88f7[12]](_$_88f7[30])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13]}function showProfile(){document[_$_88f7[12]](_$_88f7[34])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[31]}function hideProfile(){document[_$_88f7[12]](_$_88f7[34])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13]}function showInfo(){str1= ("\x59\x6F\x75\x20\x68\x61\x76\x65\x20"+userPoints+_$_88f7[35]);document[_$_88f7[12]](_$_88f7[36])[_$_88f7[27]]= str1;str2= (""+p2pPoints+_$_88f7[37]);document[_$_88f7[12]](_$_88f7[38])[_$_88f7[27]]= str2;document[_$_88f7[12]](_$_88f7[39])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[31]}function hideInfo(){str1= "\x20";document[_$_88f7[12]](_$_88f7[36])[_$_88f7[27]]= str1;str2= "\x20";document[_$_88f7[12]](_$_88f7[38])[_$_88f7[27]]= str2;document[_$_88f7[12]](_$_88f7[39])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13]}function showConfig(){console[_$_88f7[18]](("\x41\x76\x61\x69\x6C\x61\x62\x6C\x65\x20\x50\x6F\x69\x6E\x74\x73\x73\x73\x73\x73\x73\x3A\x20"+userPoints+_$_88f7[40]));document[_$_88f7[12]](_$_88f7[41])[_$_88f7[27]]= ("\x41\x76\x61\x69\x6C\x61\x62\x6C\x65\x20\x50\x6F\x69\x6E\x74\x73\x3A\x20"+userPoints+_$_88f7[40]);document[_$_88f7[12]](_$_88f7[42])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[26];console[_$_88f7[18]](("\x75\x73\x65\x72\x4E\x61\x6D\x65\x20\x3D\x20"+userName+_$_88f7[40]))}function cancelSetting(){document[_$_88f7[12]](_$_88f7[44])[_$_88f7[10]][_$_88f7[43]]= userAvatarImgUrl;document[_$_88f7[12]](_$_88f7[46])[_$_88f7[45]]= userName;document[_$_88f7[12]](_$_88f7[47])[_$_88f7[45]]= userName}function saveSetting(){userAvatarImgUrl= tempUserAvatarImgUrl;document[_$_88f7[12]](_$_88f7[48])[_$_88f7[10]][_$_88f7[43]]= userAvatarImgUrl;document[_$_88f7[12]](_$_88f7[49])[_$_88f7[10]][_$_88f7[43]]= oppoAvatarImgUrl;userName= tempUserName;document[_$_88f7[12]](_$_88f7[46])[_$_88f7[45]]= userName}function handleEvents(){document[_$_88f7[52]](_$_88f7[51])[_$_88f7[15]](_$_88f7[50],handlePvsP);document[_$_88f7[52]](_$_88f7[53])[_$_88f7[15]](_$_88f7[50],handleSound);document[_$_88f7[52]](_$_88f7[54])[_$_88f7[15]](_$_88f7[50],handleInfoContinue);document[_$_88f7[52]](_$_88f7[55])[_$_88f7[15]](_$_88f7[50],handleInfoBack);document[_$_88f7[52]](_$_88f7[56])[_$_88f7[15]](_$_88f7[50],handleSave);document[_$_88f7[52]](_$_88f7[57])[_$_88f7[15]](_$_88f7[50],handleProfileContinue);document[_$_88f7[52]](_$_88f7[58])[_$_88f7[15]](_$_88f7[50],handleProfileBack);document[_$_88f7[52]](_$_88f7[59])[_$_88f7[15]](_$_88f7[50],handleAvatarSel);document[_$_88f7[52]](_$_88f7[60])[_$_88f7[15]](_$_88f7[50],handleAvatarSel);document[_$_88f7[52]](_$_88f7[61])[_$_88f7[15]](_$_88f7[50],handleAvatarSel);document[_$_88f7[52]](_$_88f7[62])[_$_88f7[15]](_$_88f7[50],handleAvatarSel);document[_$_88f7[52]](_$_88f7[63])[_$_88f7[15]](_$_88f7[50],handleAvatarSel);document[_$_88f7[52]](_$_88f7[64])[_$_88f7[15]](_$_88f7[50],handleAvatarSel);document[_$_88f7[12]](_$_88f7[47])[_$_88f7[15]](_$_88f7[65],function(){this[_$_88f7[45]]= _$_88f7[40]});document[_$_88f7[12]](_$_88f7[47])[_$_88f7[15]](_$_88f7[66],function(){var _0x208DA=this[_$_88f7[45]][_$_88f7[67]]();tempUserName= _0x208DA})}function handlePvsAi(){gameMode= _$_88f7[3];isAI= true;hideMenu();showInfo()}function handlePvsP(){gameMode= _$_88f7[68];isAI= false;hideMenu();showInfo()}function handleMultiplayer(){document[_$_88f7[12]](_$_88f7[32])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13];document[_$_88f7[12]](_$_88f7[33])[_$_88f7[10]][_$_88f7[9]]= _$_88f7[13];gameMode= _$_88f7[69];isAI= false;hideMenu();showInfo()}function handleInfoContinue(){if(gameMode=== _$_88f7[69]){hideInfo();showConfig();isStepValueValid= isColValueValid= isRowValueValid= true;handleStart();socket= io();multiplayer()}else {hideInfo();showConfig()}}function handleInfoBack(){hideInfo();showMenu()}function handleProfile(){hideMenu();showProfile()}function handleProfileBack(){cancelSetting();hideProfile();showMenu()}function handleSave(){saveSetting()}function handleProfileContinue(){hideProfile();showInfo()}let handleAvatarSel=(_0x20899)=>{tempUserAvatarImgUrl= ("\x75\x72\x6C\x28\x27\x2E\x2F\x61\x73\x73\x65\x74\x73\x2F\x61\x76\x61\x74\x61\x72\x2F"+_0x20899[_$_88f7[71]][_$_88f7[70]]+_$_88f7[72]);document[_$_88f7[12]](_$_88f7[44])[_$_88f7[10]][_$_88f7[43]]= tempUserAvatarImgUrl};function RandomInt(_0x2095C,_0x2091B){return Math[_$_88f7[74]](Math[_$_88f7[73]]()* (_0x2091B- _0x2095C+ 1)+ _0x2095C)}function detectDevice(){if(window[_$_88f7[0]]<= 768|| /Mobi|Android|iPhone|iPad/i[_$_88f7[76]](navigator[_$_88f7[75]])){return _$_88f7[77]};isDesktop= true;return _$_88f7[78]}
+var isSound =true;
+var isToggleSound = true; 
+///////////////////////////////////////
+
+var gameRatio = window.innerWidth/window.innerHeight;
+var maxX  = 720;
+var maxY  = 1280;
+
+//////////////////////////////////
+
+let sndWin, sndLose, sndDraw, sndP1Move, sndP2Move;
+
+let userPoints=1000, p2pPoints = 50;
+let isDesktop = false;
+////////////////////////////////////////////////////////////////////////////////////////
+
+let tempUserName = 'Player X';
+let userName = tempUserName;
+
+let tempUserAvatarImgUrl = `url('./assets/avatar/avatar_none.png')`;
+let userAvatarImgUrl = tempUserAvatarImgUrl;
+
+let oppoAvatarImgUrl = `url('./assets/avatar/avatar_none.png')`;
+
+let isAI = false; 
+
+let gameMode = 'playerVsAI';//'playerVsPlayer';//'multiplayer';
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+window.onload = function()
+{
+    if(detectDevice())
+        isDesktop = true;
+    else
+        isDesktop = false;
+
+    var encodedURL = window.location;//parent.window.location.href;//window.location;//.href;
+    url_string = decodeURIComponent(encodedURL);
+
+    var url = new URL(url_string);
+
+    var paramValue = url.searchParams.get("jfTds4sls");
+
+    // if(paramValue == "julGtFrDS")
+    {
+        document.getElementById("loader").style.display = "none";  
+        setTimeout(()=>{
+                hideLogo();
+                showSplash(); 
+        },2000);
+        setTimeout(()=>{
+                hideSplash(); 
+                showMenu();  
+        },4000);
+
+        handleEvents();
+        loadSounds();
+    }
+
+
+    // ?jfTds4sls=julGtFrDS
+
+    document.addEventListener("visibilitychange", handleVisibilityChange, false);
+    function handleVisibilityChange() 
+    {
+        if (document.hidden) 
+        {
+            //game.paused = true;
+        } 
+        else  
+        {
+            //game.paused = false;
+        }
+        if(detectDevice())
+            isDesktop = true;
+        else
+            isDesktop = false;
+
+        console.log("User is on:", detectDevice());
+    
+    } 
+
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+function loadSounds(){
+    sndWin = new Audio("assets/media/win.mp3");
+    sndLose = new Audio("assets/media/lose.mp3");
+    sndDraw = new Audio("assets/media/draw.mp3");
+    sndP1Move = new Audio("assets/media/p1move.mp3");
+    sndP2Move = new Audio("assets/media/p2move.mp3");
+    
+}
+
+function hideLogo() {
+    document.getElementById("logo").style.display = "none"; 
+}
+function showSplash() {
+    document.getElementById("splash").style.display = "block";  
+}
+function hideSplash() {
+    document.getElementById("splash").style.display = "none";  
+}
+function showMenu()
+{
+    document.getElementById('menu-point').innerHTML = "Available points: "+userPoints;
+    document.getElementById("main-menu").style.display = "flex";  
+    document.getElementById("restart").style.display = "block"; 
+    document.getElementById("playAgain").style.display = "block"; 
+    
+}
+function hideMenu()
+{
+    document.getElementById("main-menu").style.display = "none";  
+}
+function showProfile()
+{
+    document.getElementById('profile-container').style.display= "flex";
+}
+function hideProfile()
+{
+    document.getElementById('profile-container').style.display= "none";
+}
+function showInfo()
+{
+    str1 = `You have ${userPoints} points`;
+    document.getElementById("sub-title").innerHTML = str1;
+    str2 = `${p2pPoints} points will be deducted.`;
+    document.getElementById("text-content").innerHTML = str2
+    document.getElementById("info").style.display = "flex"; 
+}
+function hideInfo()
+{
+    str1 = ` `;
+    document.getElementById("sub-title").innerHTML = str1;
+    str2 = ` `;
+    document.getElementById("text-content").innerHTML = str2
+    document.getElementById("info").style.display = "none"; 
+
+}
+function showConfig()
+{
+    console.log(`Available Pointssssss: ${userPoints}`);
+    document.getElementById("config-point").innerHTML = `Available Points: ${userPoints}`;
+    document.getElementById("main").style.display="block";
+    console.log(`userName = ${userName}`);
+}
+function cancelSetting()
+{
+	document.getElementById('selected-avatar').style.backgroundImage = userAvatarImgUrl;
+	// userName = tempUserName = "";	
+	document.getElementById("player1_name").value = userName;
+	document.getElementById("user-name").value = userName;
+	
+}
+function saveSetting()
+{
+	userAvatarImgUrl = tempUserAvatarImgUrl;
+	document.getElementById('player1Avatar').style.backgroundImage = userAvatarImgUrl;
+    document.getElementById('player2Avatar').style.backgroundImage = oppoAvatarImgUrl;
+
+    userName = tempUserName;
+    document.getElementById("player1_name").value = userName;
+    
+}
+//-------------------------------------------------------------------------------------------------------
+function handleEvents()
+{
+	document.querySelector('#btn-player-vs-player').addEventListener('click', handlePvsP);
+	// document.querySelector('#btn-player-vs-ai').addEventListener('click', handlePvsAi); 
+    document.querySelector('#btn-multiplyer').addEventListener('click', handleMultiplayer);
+
+	document.querySelector('#btn-sound').addEventListener('click', handleSound);
+	// document.querySelector('#btn-profile').addEventListener('click', handleProfile);
+	
+	document.querySelector('#btn-info-continue').addEventListener('click', handleInfoContinue); 
+	document.querySelector('#btn-back').addEventListener('click', handleInfoBack); 
+
+	document.querySelector('#btn-save').addEventListener('click', handleSave); 
+	document.querySelector('#btn-profile-continue').addEventListener('click', handleProfileContinue); 
+	document.querySelector('#btn-profile-back').addEventListener('click', handleProfileBack);
+
+	document.querySelector('#avatar_0').addEventListener('click', handleAvatarSel);
+	document.querySelector('#avatar_1').addEventListener('click', handleAvatarSel);
+	document.querySelector('#avatar_2').addEventListener('click', handleAvatarSel);
+	document.querySelector('#avatar_3').addEventListener('click', handleAvatarSel);
+	document.querySelector('#avatar_4').addEventListener('click', handleAvatarSel);
+	document.querySelector('#avatar_5').addEventListener('click', handleAvatarSel);
+
+	document.getElementById("user-name").addEventListener("focus", function() {
+        this.value = "";
+    });
+    document.getElementById("user-name").addEventListener("blur", function () {
+        var value = this.value.trim();
+        tempUserName = value;
+        
+    });
+}
+function handlePvsAi() {
+    gameMode = 'playerVsAI';
+	isAI = true;
+	hideMenu();
+    showInfo();
+}
+function handlePvsP()
+{
+    gameMode = 'playerVsPlayer';
+	isAI = false;
+    hideMenu();
+    showInfo();
+}
+function handleMultiplayer()
+{
+    document.getElementById("restart").style.display = "none"; // hide back button on gameplay screen
+    document.getElementById("playAgain").style.display = "none"; // hide playAgain button on gameplay screen
+    gameMode = 'multiplayer';
+    isAI = false;
+    hideMenu();
+    showInfo();
+
+}
+
+function handleInfoContinue()
+{
+    if(gameMode === 'multiplayer')
+    {
+        hideInfo();
+        showConfig();
+        isStepValueValid = isColValueValid = isRowValueValid = true;
+        handleStart();
+        socket = io();
+        multiplayer();
+    }    
+    else
+    {
+        hideInfo();
+        showConfig();
+    }    
+}
+function handleInfoBack() {
+    hideInfo();
+    showMenu();
+}
+function handleProfile() {
+    hideMenu();
+    showProfile();
+}
+function handleProfileBack()
+{
+	cancelSetting();
+    hideProfile();
+    showMenu();
+}
+function handleSave()
+{
+	saveSetting();	
+}
+function handleProfileContinue()
+{
+	hideProfile();
+    showInfo();
+}
+let handleAvatarSel = (event) => {
+    // console.log("Clicked image source:", event.srcElement.id);
+    tempUserAvatarImgUrl = `url('./assets/avatar/${event.srcElement.id}.png')`;
+    document.getElementById('selected-avatar').style.backgroundImage = tempUserAvatarImgUrl;
+   
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function RandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+    //return this.game.rnd.integerInRange(min,max);
+}
+
+function detectDevice() {
+    if (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        return "Mobile";
+    }
+    isDesktop = true;
+    return "Desktop";
+}
+
